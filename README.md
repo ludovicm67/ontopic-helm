@@ -36,13 +36,14 @@ cp values.example.yaml values.yaml
 
 You need a **PostgreSQL** database with a dedicated owner.
 
-In case you don't have one, you can use the provided helm chart to test it. You can find detailed instructions in the [dedicated documentation](./docs/deploy-postgresql.md).
+In case you don't have one, you can use the provided Helm chart to test it. You can find detailed instructions in the [dedicated documentation](./docs/deploy-postgresql.md).
 
 ### Create the database secret file
 
-You need to provide the database password as a secret. You have to [create a secret](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_generic/) with the key `database-password-file` entry.
+You need to provide the database password as a secret.
+You have to [create a secret](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_generic/) with the key `database-password-file` entry.
 
-For example, if you have a PostgreSQL database deployed with the helm chart, you can create the secret with the following command:
+For example, if you have a PostgreSQL database deployed with the Helm chart, you can create the secret with the following command:
 
 ```sh
 kubectl create secret generic database-password-file \
@@ -62,7 +63,7 @@ store-server:
 
 By default, the cookie secret is created with a **random** value when the chart is installed.
 
-The helm chart create a secret with the key `cookie-secret` entry.
+The Helm chart create a secret with the key `cookie-secret` entry.
 
 ### Create a user and set password as secret
 
@@ -103,7 +104,8 @@ kubectl create secret generic password-db-users \
 
 #### Update users
 
-The chart add a job to handle this secret. This secret is managed at each installation and upgrade.
+The chart add a job to handle this secret.
+This secret is managed at each installation and upgrade.
 
 If you need to only reload the users, you can upgrade the release like this :
 
