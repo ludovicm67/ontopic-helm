@@ -30,10 +30,12 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -52,7 +54,8 @@ persistentVolumeClaimRetentionPolicy:
   ##
   whenDeleted: Retain
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -99,7 +102,6 @@ tolerations: []
 
 affinity: {}
 
-
 services:
   ##--- Angular frontend
   angular-frontend:
@@ -125,7 +127,6 @@ services:
       HIDE_PROJECTS: false
       IS_DESKTOP_VERSION: false
 
-
   ##--- Identity service
   identity-service:
     image:
@@ -134,8 +135,8 @@ services:
       tag: "helm-v2024.1.3"
 
     args:
-      - '--session.enable=true'
-      - '--identity.enable=true'
+      - "--session.enable=true"
+      - "--identity.enable=true"
 
     livenessProbe:
       httpGet:
@@ -242,9 +243,9 @@ services:
 
     env:
       node_env: production
-      db_reset: 'false'
-      db_migrate: 'true'
-      db_seed: 'false'
+      db_reset: "false"
+      db_migrate: "true"
+      db_seed: "false"
       database_host: store-server-db-postgresql.ontopic.svc.cluster.local
       database_port: 5432
       database_name: internal
@@ -328,7 +329,8 @@ services:
     ingress:
       enabled: true
       className: ""
-      annotations: {}
+      annotations:
+        {}
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
       hosts:
