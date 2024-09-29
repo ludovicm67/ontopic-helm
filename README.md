@@ -36,7 +36,7 @@ cp values.example.yaml values.yaml
 
 You need a **PostgreSQL** database with a dedicated owner.
 
-In case you don't have one, you can use the provided helm chart to test it.  You can find detailed instructions in the [dedicated documentation](./docs/deploy-postgresql.md).
+In case you don't have one, you can use the provided helm chart to test it. You can find detailed instructions in the [dedicated documentation](./docs/deploy-postgresql.md).
 
 ### Create the database secret file
 
@@ -74,24 +74,23 @@ You can find a sample in the [samples folder](./samples/users.json) :
 
 ```json
 {
-    "users": [
-      {
-        "username": "admin",
-        "password": "$aprBe1/",
-        "email": "test@email.it",
-        "fullname": "test",
-        "groups": ["developers", "admin"]
-      },
-      {
-        "username": "test",
-        "password": "$apr1$C.",
-        "email": "test@email.it",
-        "fullname": "test",
-        "groups": ["developers"]
-      }
-    ]
-  }
-
+  "users": [
+    {
+      "username": "admin",
+      "password": "$aprBe1/",
+      "email": "test@email.it",
+      "fullname": "test",
+      "groups": ["developers", "admin"]
+    },
+    {
+      "username": "test",
+      "password": "$apr1$C.",
+      "email": "test@email.it",
+      "fullname": "test",
+      "groups": ["developers"]
+    }
+  ]
+}
 ```
 
 And then create the secret :
@@ -111,7 +110,6 @@ If you need to only reload the users, you can upgrade the release like this :
 ```sh
 helm upgrade ontopic-studio ontopic/ontopic-studio --reuse-values --force
 ```
-
 
 ### Use Azure as identity service provider (optional)
 
@@ -277,14 +275,11 @@ env:
 
 It's possible to add additional jdbc drivers to `ontop-endpoint` and `ontopic-studio` by adding some env vars :
 
-
-
-| Name                        | Description                                      |
-| --------------------------- | ------------------------------------------------ |
-| `JDBC_EXTERNAL_REPO`        | The path of the git repo                         |
-| `JDBC_EXTERNAL_REPO_FOLDER` | The folder within the repo                       |
+| Name                          | Description                                      |
+| ----------------------------- | ------------------------------------------------ |
+| `JDBC_EXTERNAL_REPO`          | The path of the git repo                         |
+| `JDBC_EXTERNAL_REPO_FOLDER`   | The folder within the repo                       |
 | `JDBC_EXTERNAL_REPO_KEY_PATH` | The path where the SSH key is mounted (optional) |
-
 
 If you use a deploy key to access the git repo, you need to create a secret and then provide `JDBC_EXTERNAL_REPO_KEY_PATH` if needed.
 
@@ -296,6 +291,7 @@ So you can create a secret like :
 kubectl create secret generic jdbc-external-repo \
   --from-file=private_key=./my-private-key
 ```
+
 Create or add to the values file `values-server.yaml` that will be used by the `ontop-endpoint` chart:
 
 ```sh
