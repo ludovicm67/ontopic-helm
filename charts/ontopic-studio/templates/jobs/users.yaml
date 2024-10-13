@@ -91,7 +91,6 @@ spec:
       - name: user-creation
         image: ghcr.io/ontopic-vkg/ontopic-helm/user-creation:helm-{{ .Chart.AppVersion }}
         command:
-        command:
         - "sh"
         - "-c"
         - >-
@@ -124,8 +123,6 @@ spec:
         volumeMounts:
         - name: secret
           mountPath: /mnt/secret
-      restartPolicy: Never
-      volumes:
       volumes:
       - name: users
         secret:

@@ -12,6 +12,13 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+ingress:
+  # className: ""
+  # host: ontopic.local
+  tls: false
+  # secretName: ontopic-studio-tls
+  # annotations: {}
+
 #imagePullSecrets: [{"name": "regcred"}]
 nameOverride: ""
 fullnameOverride: ""
@@ -358,3 +365,17 @@ services:
       ONTOP_ENDPOINT_SERVICE_PORT: 8080
       # GIT_MIRROR_SERVICE_HOST: localhost
       # GIT_MIRROR_SERVICE_PORT: 80
+
+# Configure the PostgreSQL subchart
+postgresql:
+  # -- enable the PostgreSQL chart
+  enabled: true
+  # -- fullnameOverride is used to override the name of the subchart
+  fullnameOverride: "store-server-db"
+
+# Configure the Ontop Endpoint subchart
+ontop-endpoint:
+  # -- enable the Ontop Endpoint chart
+  enabled: true
+  # -- fullnameOverride is used to override the name of the subchart
+  fullnameOverride: "ontop-endpoint"
