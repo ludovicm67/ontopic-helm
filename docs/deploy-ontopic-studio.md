@@ -25,3 +25,22 @@ kubectl config set-context --current --namespace=<your-namespace>
 Make sure to replace `<your-namespace>` with the name of the namespace you want to use.
 
 ## Getting started
+
+### Add the license as secret
+
+Add the provided Ontopic Studio license as secret.
+
+Create the secret from the `user-license` file:
+
+```sh
+kubectl create secret generic user-license-file \
+  --from-file=user-license=./user-license
+```
+
+The secret is referenced like this in the `values.yaml` file:
+
+```yaml
+process-server:
+  secrets:
+    user-license-file: /run/secrets/user-license
+```

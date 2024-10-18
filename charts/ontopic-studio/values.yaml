@@ -366,12 +366,36 @@ services:
       # GIT_MIRROR_SERVICE_HOST: localhost
       # GIT_MIRROR_SERVICE_PORT: 80
 
+# Create users
+users:
+  # -- enable the user creation job
+  enabled: true
+  # -- list of users to create
+  list:
+    - username: admin
+      password: "$aprBe1/"
+      email: test@email.it
+      fullname: Admin
+      groups:
+        - developers
+        - admin
+    - username: test
+      password: "$apr1$C."
+      email: test@email.it
+      fullname: Test
+      groups:
+        - developers
+
 # Configure the PostgreSQL subchart
 postgresql:
   # -- enable the PostgreSQL chart
   enabled: true
+  # -- enable creation of the secret for Ontopic Studio
+  enableSecretCreation: true
+  # -- enable creation of the "internal" database
+  enableDatabaseCreation: true
   # -- fullnameOverride is used to override the name of the subchart
-  fullnameOverride: "store-server-db"
+  fullnameOverride: "store-server-db-postgresql"
 
 # Configure the Ontop Endpoint subchart
 ontop-endpoint:
